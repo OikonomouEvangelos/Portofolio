@@ -2,28 +2,33 @@ import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between px-8 py-4 bg-zinc-900 border-b border-zinc-800">
-      <div className="text-xl font-bold text-white">
-        <Link href="/">Evangelos.dev</Link>
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-8 bg-transparent lg:px-24 xl:px-32">
+      
+      {/* Λογότυπο / Αρχικά (Αριστερά) */}
+      <div className="text-2xl font-black tracking-tighter text-white">
+        <Link href="/">oikonomou.dev</Link>
       </div>
       
-      <ul className="flex space-x-6 text-zinc-300">
+      {/* Links (Δεξιά) */}
+      <ul className="flex space-x-8 text-xs font-bold tracking-[0.2em] text-zinc-400 uppercase sm:space-x-12">
         <li>
-          <Link href="/" className="hover:text-blue-400 transition-colors">
-            Αρχική
+          {/* Το href="#about" ψάχνει να βρει το section με id="about" */}
+          <Link href="#about" className="hover:text-white transition-colors duration-300">
+            About
           </Link>
         </li>
         <li>
-          <Link href="#projects" className="hover:text-blue-400 transition-colors">
-            Projects
+          <Link href="#work" className="hover:text-white transition-colors duration-300">
+            Work
           </Link>
         </li>
         <li>
-          <Link href="#contact" className="hover:text-blue-400 transition-colors">
-            Επικοινωνία
+          <Link href="#contact" className="hover:text-white transition-colors duration-300">
+            Contact
           </Link>
         </li>
       </ul>
+
     </nav>
   );
 }

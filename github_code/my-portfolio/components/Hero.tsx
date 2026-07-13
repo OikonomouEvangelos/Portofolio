@@ -9,8 +9,8 @@ export default function Hero() {
             Hello! I&apos;m
           </span>
           <h1 className="flex flex-col text-5xl font-black leading-[0.85] tracking-tighter text-zinc-100 sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-            <span>ΒΑΓΓΕΛΗΣ</span>
-            <span>ΟΙΚΟΝΟΜΟΥ</span>
+            <span>EVANGELOS</span>
+            <span>OIKONOMOU</span>
           </h1>
         </div>
 
