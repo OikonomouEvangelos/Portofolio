@@ -5,26 +5,23 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Spline from "@splinetool/react-spline";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import WhatIDo from "@/components/WhatIDo"; 
 
 export default function Home() {
   const containerRef = useRef(null);
 
-  // Παρακολουθούμε το scroll μέσα στο container μας
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Μαθηματικά του Animation: 
-  // Όταν είμαστε στην αρχή (0), το Avatar είναι στο κέντρο (0%).
-  // Όταν σκρολάρουμε στο τέλος της σελίδας (1), πάει αριστερά (-25%).
-  const splineX = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
+  // Χορογραφία Avatar: [Hero (Κέντρο), About (Αριστερά), What I Do (Κέντρο)]
+  const splineX = useTransform(scrollYProgress, [0, 0.5, 1], ["0%", "-25%", "0%"]);
 
   return (
     <main ref={containerRef} className="relative bg-zinc-950">
       
       {/* 3D AVATAR BACKGROUND (FIXED) */}
-      {/* Το motion.div επιτρέπει στο framer-motion να του αλλάζει τη θέση (x) ομαλά */}
       <motion.div 
         style={{ x: splineX }}
         className="fixed inset-0 z-0 flex items-center justify-center pointer-events-auto cursor-grab active:cursor-grabbing"
@@ -32,10 +29,11 @@ export default function Home() {
         <Spline scene="https://prod.spline.design/1HTMTd5bd3oJYwK3/scene.splinecode" />
       </motion.div>
 
-      {/* ΣΕΛΙΔΕΣ (ΚΕΙΜΕΝΑ ΠΟΥ ΣΚΡΟΛΑΡΟΥΝ ΑΠΟ ΠΑΝΩ) */}
+      {/* ΣΕΛΙΔΕΣ ΠΟΥ ΣΚΡΟΛΑΡΟΥΝ (Όλες μαζί στο ίδιο wrapper πλέον!) */}
       <div className="relative z-10 pointer-events-none">
         <Hero />
         <About />
+        <WhatIDo />
       </div>
 
     </main>
