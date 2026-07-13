@@ -6,6 +6,7 @@ import Spline from "@splinetool/react-spline";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import WhatIDo from "@/components/WhatIDo"; 
+import TechStack from "@/components/TechStack";
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -34,6 +35,7 @@ export default function Home() {
         <Hero />
         <About />
         <WhatIDo />
+        <TechStack />
       </div>
 
     </main>
