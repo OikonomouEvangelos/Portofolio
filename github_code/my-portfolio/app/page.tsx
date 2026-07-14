@@ -7,6 +7,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import WhatIDo from "@/components/WhatIDo"; 
 import TechStack from "@/components/TechStack";
+import SocialLinks from "@/components/SocialLinks";
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -21,6 +22,7 @@ export default function Home() {
 
   return (
     <main ref={containerRef} className="relative bg-zinc-950">
+      <SocialLinks />
       
       {/* 3D AVATAR BACKGROUND (FIXED) */}
       <motion.div 
