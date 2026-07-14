@@ -8,6 +8,8 @@ import About from "@/components/About";
 import WhatIDo from "@/components/WhatIDo"; 
 import TechStack from "@/components/TechStack";
 import SocialLinks from "@/components/SocialLinks";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -38,6 +40,8 @@ export default function Home() {
         <About />
         <WhatIDo />
         <TechStack />
+        <Contact />
+        <Footer />
       </div>
 
     </main>
