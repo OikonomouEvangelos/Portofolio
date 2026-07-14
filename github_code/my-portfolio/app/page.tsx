@@ -28,6 +28,7 @@ export default function Home() {
       
       {/* 3D AVATAR BACKGROUND (FIXED) */}
       <motion.div 
+        id="spline-robot"
         style={{ x: splineX }}
         className="fixed inset-0 z-0 flex items-center justify-center pointer-events-auto cursor-grab active:cursor-grabbing"
       >
