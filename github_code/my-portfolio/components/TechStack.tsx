@@ -1,59 +1,78 @@
+"use client";
+
+import { motion } from "framer-motion";
+// Εισαγωγή των icons από το react-icons
+import { FaReact, FaNodeJs, FaGithub, FaFigma } from "react-icons/fa";
+import { SiNextdotjs, SiTypescript, SiTailwindcss, SiFramer } from "react-icons/si";
+import ParticleBackground from "./ParticleBackground";
+
+// Η λίστα με τις τεχνολογίες και τα αντίστοιχα icons τους
+const technologies = [
+  { name: "React", category: "FRONTEND", icon: FaReact, iconColor: "text-[#61DAFB]" },
+  { name: "Next.js", category: "FRAMEWORK", icon: SiNextdotjs, iconColor: "text-zinc-100" },
+  { name: "TypeScript", category: "LANGUAGE", icon: SiTypescript, iconColor: "text-[#3178C6]" },
+  { name: "Tailwind CSS", category: "STYLING", icon: SiTailwindcss, iconColor: "text-[#38B2AC]" },
+  { name: "Node.js", category: "BACKEND", icon: FaNodeJs, iconColor: "text-[#339933]" },
+  { name: "Framer Motion", category: "ANIMATION", icon: SiFramer, iconColor: "text-[#0055FF]" },
+  { name: "Git & GitHub", category: "VERSION CONTROL", icon: FaGithub, iconColor: "text-zinc-100" },
+  { name: "Figma", category: "UI/UX DESIGN", icon: FaFigma, iconColor: "text-[#F24E1E]" },
+];
+
 export default function TechStack() {
-  // Εδώ ορίζεις τα εργαλεία που γνωρίζεις. Μπορείς να προσθέσεις ή να αφαιρέσεις όσα θες!
-  const technologies = [
-    { name: "React", category: "Frontend" },
-    { name: "Next.js", category: "Framework" },
-    { name: "TypeScript", category: "Language" },
-    { name: "Tailwind CSS", category: "Styling" },
-    { name: "Node.js", category: "Backend" },
-    { name: "Framer Motion", category: "Animation" },
-    { name: "Git & GitHub", category: "Version Control" },
-    { name: "Figma", category: "UI/UX Design" },
-  ];
-
   return (
-    <section 
-      id="techstack" 
-      className="relative z-30 flex min-h-screen w-full flex-col items-center justify-center bg-zinc-950 px-6 py-20 lg:px-16 xl:px-24"
-    >
+    <section id="tech" className="relative flex min-h-screen items-center justify-center py-24 overflow-hidden">
       
-      {/* Τίτλος */}
-      <div className="mb-20 flex flex-col items-center text-center">
-        <span className="mb-4 text-sm font-bold tracking-[0.2em] text-purple-400 uppercase">
-          Tools & Technologies
-        </span>
-        <h2 className="text-5xl font-black uppercase tracking-tighter text-white sm:text-6xl lg:text-7xl">
-          My Tech Stack
-        </h2>
+      {/* ΤΟ 3D PARTICLE BACKGROUND ΠΙΣΩ ΑΠΟ ΟΛΑ */}
+      <ParticleBackground />
+
+      <div className="relative z-10 flex w-full max-w-6xl flex-col items-center px-6">
+        
+        {/* ΤΙΤΛΟΣ */}
+        <div className="mb-16 text-center">
+          <p className="mb-2 text-sm font-semibold tracking-widest text-purple-400 uppercase">
+            Tools & Technologies
+          </p>
+          <h2 className="text-5xl font-black uppercase tracking-tighter text-zinc-100 sm:text-6xl md:text-7xl">
+            My Tech Stack
+          </h2>
+        </div>
+
+        {/* GRID ΜΕ ΤΑ ΚΟΥΤΙΑ */}
+        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {technologies.map((tech, index) => {
+            const Icon = tech.icon;
+            return (
+              <motion.div
+                key={tech.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                // Το στιλ με το dashed border που είχες
+                className="group relative flex flex-col items-center justify-center p-8 border border-dashed border-zinc-800 bg-zinc-950/50 backdrop-blur-sm transition-colors hover:border-purple-500/50 hover:bg-zinc-900/50 pointer-events-auto"
+              >
+                {/* Γωνιακά σημαδάκια (προαιρετικά για έξτρα Cyberpunk feel) */}
+                <div className="absolute left-0 top-0 h-2 w-2 border-l border-t border-zinc-700 transition-colors group-hover:border-purple-500" />
+                <div className="absolute right-0 top-0 h-2 w-2 border-r border-t border-zinc-700 transition-colors group-hover:border-purple-500" />
+                <div className="absolute bottom-0 left-0 h-2 w-2 border-b border-l border-zinc-700 transition-colors group-hover:border-purple-500" />
+                <div className="absolute bottom-0 right-0 h-2 w-2 border-b border-r border-zinc-700 transition-colors group-hover:border-purple-500" />
+
+                {/* Εικονίδιο */}
+                <Icon className={`mb-4 text-5xl ${tech.iconColor} transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1`} />
+                
+                {/* Κείμενα */}
+                <h3 className="text-xl font-bold text-zinc-100 mb-1">
+                  {tech.name}
+                </h3>
+                <p className="text-xs font-semibold tracking-widest text-zinc-500 uppercase group-hover:text-purple-300 transition-colors">
+                  {tech.category}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
+
       </div>
-
-      {/* Grid με τις κάρτες των τεχνολογιών */}
-      <div className="grid w-full max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-6">
-        {technologies.map((tech, index) => (
-          <div 
-            key={index} 
-            className="group relative flex cursor-default flex-col items-center justify-center border border-dashed border-zinc-800 bg-zinc-900/20 py-10 transition-colors duration-500 hover:bg-zinc-900/80 hover:border-zinc-700"
-          >
-            {/* Μωβ Glow Effect (Εμφανίζεται στο hover) */}
-            <div className="absolute inset-0 z-0 bg-purple-500/0 transition-colors duration-500 group-hover:bg-purple-500/5 blur-xl"></div>
-
-            {/* Διακοσμητικές Γωνίες (Ανάβουν μωβ στο hover) */}
-            <div className="absolute -left-1 -top-1 h-2 w-2 border-l-2 border-t-2 border-zinc-600 transition-colors duration-300 group-hover:border-purple-400"></div>
-            <div className="absolute -right-1 -top-1 h-2 w-2 border-r-2 border-t-2 border-zinc-600 transition-colors duration-300 group-hover:border-purple-400"></div>
-            <div className="absolute -bottom-1 -left-1 h-2 w-2 border-b-2 border-l-2 border-zinc-600 transition-colors duration-300 group-hover:border-purple-400"></div>
-            <div className="absolute -bottom-1 -right-1 h-2 w-2 border-b-2 border-r-2 border-zinc-600 transition-colors duration-300 group-hover:border-purple-400"></div>
-
-            {/* Κείμενα */}
-            <span className="relative z-10 text-xl font-bold tracking-tight text-zinc-300 transition-colors duration-300 group-hover:text-white">
-              {tech.name}
-            </span>
-            <span className="relative z-10 mt-2 text-[10px] font-bold tracking-[0.2em] text-zinc-600 uppercase transition-colors duration-300 group-hover:text-purple-300">
-              {tech.category}
-            </span>
-          </div>
-        ))}
-      </div>
-
     </section>
   );
 }
